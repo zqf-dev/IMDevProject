@@ -1,0 +1,9 @@
+ext {
+    CHANNELS = [
+            "huawei",
+            "xiaomi",
+            "vivo",
+            "oppo",
+            "yingyongbao"
+    ]
+}
