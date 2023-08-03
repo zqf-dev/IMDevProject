@@ -1,9 +1,7 @@
+//"huawei","xiaomi","vivo","oppo","yingyongbao"
 ext {
     CHANNELS = [
             "huawei",
             "xiaomi",
-            "vivo",
-            "oppo",
-            "yingyongbao"
     ]
 }

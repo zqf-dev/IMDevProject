@@ -83,4 +83,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+    huaweiImplementation files('libs/tbs_sdk_thirdapp_v4.3.0.386_44286.jar')
+    xiaomiImplementation files('libs/OnebuyGzAnalyticsSDK-1.0.3.aar')
 }
