@@ -1,9 +1,9 @@
 package com.zqf.imdevproject
 
+import android.graphics.pdf.PdfRenderer
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.zqf.imx.IMX
-import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,8 +13,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initIM() {
-        thread {
-            IMX.getInstance().initIMConnect()
-        }
+        val img = findViewById<ImageView>(R.id.pdfiv)
+        PDFUtil.mHandlePdf(img)
     }
 }
