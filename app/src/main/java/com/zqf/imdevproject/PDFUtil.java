@@ -1,5 +1,6 @@
 package com.zqf.imdevproject;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.pdf.PdfDocument;
 import android.graphics.pdf.PdfRenderer;
@@ -14,7 +15,7 @@ import java.io.IOException;
 
 public class PDFUtil {
 
-    public static void mHandlePdf(ImageView img) {
+    public static void mHandlePdf(Context context, ImageView img) {
         try {
             if (Build.VERSION.SDK_INT >= 21) {
                 String path = Environment.getExternalStorageDirectory() + "/a.pdf";
@@ -35,5 +36,10 @@ public class PDFUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static File getPdfFile() {
+        String path = Environment.getExternalStorageDirectory() + "/a.pdf";
+        return new File(path);
     }
 }

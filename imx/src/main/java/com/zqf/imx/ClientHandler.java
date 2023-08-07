@@ -10,7 +10,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        ctx.writeAndFlush(Unpooled.copiedBuffer("这是一个Netty示例程序！\n", CharsetUtil.UTF_8));
+        ctx.writeAndFlush(Unpooled.copiedBuffer("这是一个Netty示例程序!", CharsetUtil.UTF_8));
     }
 
     @Override

@@ -10,14 +10,14 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-public class IMX {
-    private static final String TAG = IMX.class.getName();
-    private static IMX instance = null;
-    public static IMX getInstance() {
+public class IMClient {
+    private static final String TAG = IMClient.class.getSimpleName();
+    private static IMClient instance = null;
+    public static IMClient getInstance() {
         if (instance == null) {
-            synchronized (IMX.class) {
+            synchronized (IMClient.class) {
                 if (instance == null) {
-                    instance = new IMX();
+                    instance = new IMClient();
                 }
             }
         }
