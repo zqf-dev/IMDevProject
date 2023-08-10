@@ -11,26 +11,30 @@ import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.github.barteksc.pdfviewer.util.FitPolicy
+import com.zqf.imdevproject.http.OkHttpAnalyze
 
 class MainActivity : AppCompatActivity(), OnPageChangeListener, OnLoadCompleteListener,
     OnPageErrorListener, OnLongPressListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initIM()
+//        initOkhttp()
+        initPDF()
     }
 
-    private fun initIM() {
+    private fun initOkhttp() {
+        OkHttpAnalyze.testReq()
+    }
+
+    private fun initPDF() {
 //        val img = findViewById<ImageView>(R.id.pdfiv)
 //        PDFUtil.mHandlePdf(this, img)
-
         val pdf = findViewById<PDFView>(R.id.pdfview)
         pdf.fromFile(PDFUtil.getPdfFile())
             .defaultPage(0)
             .onPageChange(this)
             .enableAnnotationRendering(true)
             .onLoad(this)
-            .scrollHandle(DefaultScrollHandle(this))
             .spacing(10) // in dp
             .onPageError(this)
             .pageFitPolicy(FitPolicy.BOTH)
