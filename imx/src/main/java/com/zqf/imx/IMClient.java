@@ -2,6 +2,15 @@ package com.zqf.imx;
 
 import com.zqf.imx.utils.IMTools;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -13,6 +22,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 public class IMClient {
     private static final String TAG = IMClient.class.getSimpleName();
     private static IMClient instance = null;
+
     public static IMClient getInstance() {
         if (instance == null) {
             synchronized (IMClient.class) {
@@ -22,6 +32,26 @@ public class IMClient {
             }
         }
         return instance;
+    }
+
+    /**
+     * socket 连接
+     */
+    public void initSocketConnect() throws Exception {
+        Socket client = new Socket(IMTools.IP, IMTools.PORT);
+        try {
+            BufferedInputStream in = new BufferedInputStream(client.getInputStream());
+            PrintWriter out = new PrintWriter(new OutputStreamWriter(client.getOutputStream(), "GB18030"));
+            String clientString = "客户端发给服务器端的信息";
+            out.println(clientString);
+            out.flush();
+            in.close();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            client.close();
+        }
     }
 
     //进行初始化

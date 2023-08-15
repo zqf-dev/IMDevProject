@@ -1,5 +1,7 @@
 package com.zqf.imx;
 
+import java.nio.charset.Charset;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
@@ -8,9 +10,12 @@ import io.netty.util.CharsetUtil;
 
 public class ClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
+    /**
+     * 乱码可改格式为：GB18030
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        ctx.writeAndFlush(Unpooled.copiedBuffer("这是一个Netty示例程序!", CharsetUtil.UTF_8));
+        ctx.writeAndFlush(Unpooled.copiedBuffer("这是一个Netty示例程序!", Charset.forName("GB18030")));
     }
 
     @Override

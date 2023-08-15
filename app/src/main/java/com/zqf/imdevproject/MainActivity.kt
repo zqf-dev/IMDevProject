@@ -9,17 +9,28 @@ import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
 import com.github.barteksc.pdfviewer.listener.OnLongPressListener
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener
-import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.github.barteksc.pdfviewer.util.FitPolicy
 import com.zqf.imdevproject.http.OkHttpAnalyze
+import com.zqf.imx.IMClient
 
 class MainActivity : AppCompatActivity(), OnPageChangeListener, OnLoadCompleteListener,
     OnPageErrorListener, OnLongPressListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        initOkhttp()
-        initPDF()
+        initNetty()
+    }
+
+    private fun initSocket() {
+        Thread {
+            IMClient.getInstance().initSocketConnect()
+        }.start()
+    }
+
+    private fun initNetty() {
+        Thread {
+            IMClient.getInstance().initIMConnect()
+        }.start()
     }
 
     private fun initOkhttp() {
