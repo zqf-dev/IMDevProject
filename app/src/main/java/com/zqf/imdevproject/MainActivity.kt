@@ -12,6 +12,7 @@ import com.github.barteksc.pdfviewer.listener.OnPageErrorListener
 import com.github.barteksc.pdfviewer.util.FitPolicy
 import com.zqf.imdevproject.http.OkHttpAnalyze
 import com.zqf.imx.IMClient
+import com.zqf.imx.utils.IMXConst
 
 class MainActivity : AppCompatActivity(), OnPageChangeListener, OnLoadCompleteListener,
     OnPageErrorListener, OnLongPressListener {
@@ -28,9 +29,7 @@ class MainActivity : AppCompatActivity(), OnPageChangeListener, OnLoadCompleteLi
     }
 
     private fun initNetty() {
-        Thread {
-            IMClient.getInstance().initIMConnect()
-        }.start()
+        IMClient.getInstance().initIMX()
     }
 
     private fun initOkhttp() {

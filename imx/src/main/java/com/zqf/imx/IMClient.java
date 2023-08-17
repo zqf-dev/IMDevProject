@@ -1,15 +1,14 @@
 package com.zqf.imx;
 
-import com.zqf.imx.utils.IMTools;
+import android.text.TextUtils;
+
+import com.zqf.imx.utils.IMXConst;
+import com.zqf.imx.utils.MBThreadPoolExecutor;
 
 import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -38,7 +37,7 @@ public class IMClient {
      * socket 连接
      */
     public void initSocketConnect() throws Exception {
-        Socket client = new Socket(IMTools.IP, IMTools.PORT);
+        Socket client = new Socket(IMXConst.IP, IMXConst.PORT);
         try {
             BufferedInputStream in = new BufferedInputStream(client.getInputStream());
             PrintWriter out = new PrintWriter(new OutputStreamWriter(client.getOutputStream(), "GB18030"));
@@ -55,25 +54,32 @@ public class IMClient {
     }
 
     //进行初始化
-    public void initIMConnect() {
-        // 工作线程组, 老板线程组会把任务丢给他，让手下线程组去做任务，服务客户
-        EventLoopGroup group = new NioEventLoopGroup();
-        try {
-            Bootstrap client = new Bootstrap();
-            client.group(group)
-                    .channel(NioSocketChannel.class)
-                    .handler(new ChildChannelHandler());
-
-            // 发起异步连接操作
-            ChannelFuture f = client.connect(IMTools.IP, IMTools.PORT).sync();
-            // 等待客户端链路关闭
-            f.channel().closeFuture().sync();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            // 优雅退出，释放线程池资源
-            group.shutdownGracefully();
+    public void initIMX(String... IP_Port) {
+        if (IP_Port.length > 1) {
+            String IP = IP_Port[0];
+            String Port = IP_Port[1];
+            if (!TextUtils.isEmpty(IP)) IMXConst.IP = IP;
+            if (!TextUtils.isEmpty(Port)) IMXConst.PORT = Integer.parseInt(Port);
         }
+        MBThreadPoolExecutor.runInBackground(() -> {
+            // 工作线程组, 老板线程组会把任务丢给他，让手下线程组去做任务，服务客户
+            EventLoopGroup group = new NioEventLoopGroup();
+            try {
+                Bootstrap client = new Bootstrap();
+                client.group(group)
+                        .channel(NioSocketChannel.class)
+                        .handler(new ChildChannelHandler());
+                // 发起异步连接操作
+                ChannelFuture f = client.connect(IMXConst.IP, IMXConst.PORT).sync();
+                // 等待客户端链路关闭
+                f.channel().closeFuture().sync();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                // 优雅退出，释放线程池资源
+                group.shutdownGracefully();
+            }
+        });
     }
 
     private static class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
