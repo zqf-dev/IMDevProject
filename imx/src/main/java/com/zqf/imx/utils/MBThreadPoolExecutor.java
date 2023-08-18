@@ -37,7 +37,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MBThreadPoolExecutor {
 
     private static final String TAG = MBThreadPoolExecutor.class.getSimpleName();
-
     //获取cpu核心线程数->得到可用的计算资源。
     private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
     //核心线程池大小

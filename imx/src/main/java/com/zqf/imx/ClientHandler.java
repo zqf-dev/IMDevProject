@@ -1,5 +1,7 @@
 package com.zqf.imx;
 
+import android.util.Log;
+
 import java.nio.charset.Charset;
 
 import io.netty.buffer.ByteBuf;
@@ -20,7 +22,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
     @Override
     public void channelRead0(ChannelHandlerContext ctx, ByteBuf in) {
-        System.out.println("客户端接收到消息： " + in.toString(CharsetUtil.UTF_8));
+        Log.e("TAG", "客户端接收到消息： " + in.toString(CharsetUtil.UTF_8));
     }
 
     @Override

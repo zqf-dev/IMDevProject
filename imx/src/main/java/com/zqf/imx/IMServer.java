@@ -23,7 +23,6 @@ public class IMServer {
                     ch.pipeline().addLast(MESSAGE_CODEC);
                 }
             });
-
             Channel channel = serverBootstrap.bind(7055).sync().channel();
             channel.closeFuture().sync();
         } catch (InterruptedException e) {
