@@ -3,6 +3,9 @@ apply from: "channel.gradle"
 buildscript {
     ext.kotlin_version = "1.5.31"
     repositories {
+        maven {
+            url 'http://10.10.11.151:38081/repository/face-auth-release/'
+        }
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
@@ -16,6 +19,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            url 'http://10.10.11.151:38081/repository/face-auth-release/'
+        }
         google()
         mavenCentral()
         jcenter()

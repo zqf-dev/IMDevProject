@@ -1,4 +1,3 @@
 rootProject.name = "IMDevProject"
 include ':app'
 include ':imx'
-include ':android-pdf-viewer'

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProtractorView">
+        <attr name="intervalsBetweenValues" format="integer" />
+        <attr name="valuesTextSize" format="dimension" />
+        <attr name="valuesTextColor" format="color" />
+        <attr name="linesWidth" format="dimension" />
+        <attr name="linesColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="AngleRulerView">
+        <attr name="minAngle" format="float" />
+        <attr name="maxAngle" format="float" />
+    </declare-styleable>
+
+</resources>

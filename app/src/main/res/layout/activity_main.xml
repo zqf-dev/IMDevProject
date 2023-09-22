@@ -6,15 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/pdfiv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/pdfiv"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:visibility="gone" />-->
 
-    <com.github.barteksc.pdfviewer.PDFView
-        android:id="@+id/pdfview"
+    <!--    <com.zqf.imdevproject.widget.ProtractorViewKt-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="200dp"-->
+    <!--        tools:ignore="MissingConstraints"-->
+    <!--        app:intervalsBetweenValues="10"-->
+    <!--        app:linesColor="@android:color/black"-->
+    <!--        app:linesWidth="1dp"-->
+    <!--        app:valuesTextSize="10sp" />-->
+
+    <com.zqf.imdevproject.widget.TestProtView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="200dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
